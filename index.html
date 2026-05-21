@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>steudata Steuerberatungsgesellschaft mbH | Hamburg</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- KOLORYSTYKA --- */
+        :root {
+            --bg-cream: #F3EEE4;      
+            --bg-white: #FFFFFF;      
+            --text-dark: #0D353A;     
+            --accent-gold: #B69C6D;   
+            --check-green: #2B8662;   
+            --border-light: #E5DFD5;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 { font-weight: 600; line-height: 1.2; text-transform: uppercase; }
+        .subtitle-gold { color: var(--accent-gold); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; display: block; }
+        
+        /* --- NAWIGACJA --- */
+        nav {
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--bg-cream);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo { font-size: 22px; font-weight: 700; letter-spacing: 1px; color: var(--text-dark); text-decoration: none;}
+        .logo span { font-weight: 300; }
+        
+        .nav-actions { display: flex; align-items: center; gap: 15px; }
+        
+        /* Przyciski */
+        .btn {
+            display: inline-block; text-decoration: none; padding: 14px 24px; border-radius: 50px;
+            font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+            text-align: center; transition: var(--transition); border: none; cursor: pointer; width: 100%;
+        }
+        .btn-dark { background-color: var(--text-dark); color: #fff; }
+        .btn-dark:hover { background-color: #082226; }
+        .btn-gold { background-color: var(--accent-gold); color: #fff; }
+        .btn-gold:hover { background-color: #9A8359; }
+        .btn-nav { width: auto; padding: 10px 18px; font-size: 0.75rem; }
+
+        /* --- HERO SEKCJA --- */
+        .hero { padding: 50px 20px; background-color: var(--bg-cream); }
+        .hero h1 { font-size: 2.2rem; margin-bottom: 25px; letter-spacing: -0.5px; }
+        .hero p { font-size: 1rem; margin-bottom: 30px; font-weight: 400; max-width: 600px; }
+
+        .btn-group { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
+
+        /* --- BIAŁA SEKCJA (Kanzlei / Kompetencje) --- */
+        .white-section { background-color: var(--bg-white); padding: 60px 20px; }
+        .white-section h2 { font-size: 1.8rem; margin-bottom: 25px; }
+        .white-section p.intro { font-size: 0.95rem; margin-bottom: 40px; font-weight: 300; max-width: 800px; }
+
+        .check-list { list-style: none; }
+        .check-list li {
+            display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px;
+            font-size: 0.95rem; font-weight: 500; background: var(--bg-cream); padding: 15px 20px; border-radius: 8px;
+        }
+        .check-icon {
+            flex-shrink: 0; width: 24px; height: 24px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--check-green); border: 1px solid var(--check-green); font-weight: bold;
+        }
+
+        /* --- SEMINARIA --- */
+        .seminar-section { padding: 60px 20px; background-color: var(--bg-cream); }
+        .seminar-box { margin-bottom: 30px; }
+        .seminar-box h3 { font-size: 1.1rem; margin-bottom: 15px; color: var(--text-dark); text-transform: none; font-weight: 600;}
+        .seminar-item {
+            background: var(--bg-white); padding: 15px 20px; border-radius: 8px; margin-bottom: 10px;
+            border-left: 4px solid var(--accent-gold); font-size: 0.9rem; font-weight: 500;
+        }
+
+        /* --- ZESPÓŁ --- */
+        .team-section { background-color: var(--bg-white); padding: 60px 20px; }
+        .team-grid { display: flex; flex-direction: column; gap: 30px; margin-top: 40px; }
+        .team-card { text-align: center; background: var(--bg-cream); padding: 40px 20px; border-radius: 8px; }
+        .team-photo {
+            width: 120px; height: 120px; background-color: #E2DDD3; border-radius: 50%; 
+            margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: #888;
+        }
+        .team-card h3 { font-size: 1.2rem; margin-bottom: 5px; text-transform: none;}
+        .team-card p.role { font-size: 0.85rem; color: var(--text-dark); font-weight: 600; margin-bottom: 5px; }
+        .team-card p.desc { font-size: 0.8rem; color: #666; margin-bottom: 15px; }
+        .team-card a { font-size: 0.85rem; color: var(--accent-gold); text-decoration: none; font-weight: 500; }
+
+        /* --- SERVICE (Linki) --- */
+        .service-section { padding: 60px 20px; background-color: var(--bg-cream); }
+        .service-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 30px; }
+        .service-link {
+            background: var(--bg-white); padding: 20px; border-radius: 8px; text-decoration: none; color: var(--text-dark);
+            border: 1px solid var(--border-light); transition: var(--transition); display: block;
+        }
+        .service-link:hover { border-color: var(--accent-gold); transform: translateY(-3px); }
+        .service-link h4 { font-size: 1rem; margin-bottom: 5px; text-transform: none; color: var(--accent-gold); }
+        .service-link p { font-size: 0.8rem; font-weight: 400; margin-bottom: 8px; }
+        .service-link span { font-size: 0.75rem; color: #888; }
+
+        /* --- MAPA INTEGRACJA --- */
+        .map-container {
+            width: 100%;
+            height: 300px;
+            margin-top: 30px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* --- STOPKA / KONTAKT --- */
+        footer { background-color: var(--text-dark); color: #fff; padding: 50px 20px; text-align: center; }
+        footer h2 { margin-bottom: 25px; font-size: 1.5rem; }
+        .footer-info { font-size: 0.95rem; margin-bottom: 10px; font-weight: 300; }
+        .footer-info a { color: #fff; text-decoration: none; transition: var(--transition); }
+        .footer-info a:hover { color: var(--accent-gold); }
+        .footer-links { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; margin-top: 30px; }
+        .footer-links a { color: var(--accent-gold); text-decoration: none; margin: 0 15px; font-size: 0.85rem; }
+
+        /* --- MEDIA QUERIES (Desktop) --- */
+        @media (min-width: 768px) {
+            .btn { width: auto; }
+            .btn-group { flex-direction: row; }
+            nav { padding: 20px 5%; }
+            .hero { padding: 80px 5%; }
+            .hero h1 { font-size: 3.5rem; max-width: 800px; }
+            .white-section, .seminar-section, .team-section, .service-section { padding: 80px 5%; }
+            .check-list { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+            .check-list li { margin-bottom: 0; }
+            .team-grid { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+            .team-card { width: calc(25% - 25px); min-width: 250px; }
+            .service-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+            .map-container { height: 400px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">steu<span>data</span></a>
+        <div class="nav-actions">
+            <a href="#kontakt" class="btn btn-dark btn-nav">Kontakt</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <span class="subtitle-gold">steudata Steuerberatungsgesellschaft mbH</span>
+        <h1>Steuerberatungsgesellschaft in Hamburg</h1>
+        <p>Als Steuerberatungsgesellschaft sind wir für mittelständische Unternehmen, Freiberufler und Privatpersonen bundesweit tätig.</p>
+        
+        <div class="btn-group">
+            <a href="tel:+49402201338" class="btn btn-dark">Rückruf anfordern</a>
+            <a href="mailto:info@steudata.de" class="btn btn-gold">Schreiben Sie uns</a>
+        </div>
+    </header>
+
+    <section class="white-section">
+        <span class="subtitle-gold">Kanzlei</span>
+        <h2>Kompetenzen und persönliches Engagement</h2>
+        
+        <p class="intro">Wir helfen Ihnen dabei, sich in dem komplizierten und unübersichtlichen Steuersystem der Bundesrepublik Deutschland zurechtzufinden. Für jeden Bedarf bieten wir Ihnen maßgeschneiderte Lösungen. Wir unterstützen Sie nicht nur bei der Erfüllung gesetzlicher Pflichten. Sondern erstellen Ihnen ein umfassendes und auf Ihre wirtschaftlichen goals ausgerichtetes Beratungsangebot.</p>
+        
+        <ul class="check-list">
+            <li>
+                <div class="check-icon">✓</div>
+                Fachlich kompetente und vertrauensvolle Partnerschaft in allen Belangen Ihres Steuerbürgerlebens
+            </li>
+            <li>
+                <div class="check-icon">✓</div>
+                Individuelle und effiziente Beratung
+            </li>
+            <li>
+                <div class="check-icon">✓</div>
+                Identifizierung mit Ihren steuerlichen und betriebswirtschaftlichen Aufgabenstellungen bis hin zur Unternehmensberatung
+            </li>
+            <li>
+                <div class="check-icon">✓</div>
+                Fundiertes Fachwissen in den Bereichen Wirtschaft und Steuern
+            </li>
+            <li>
+                <div class="check-icon">✓</div>
+                Termintreue und Transparenz
+            </li>
+            <li>
+                <div class="check-icon">✓</div>
+                Leistungsadäquate und kalkulierbare Gebührenabrechnung
+            </li>
+        </ul>
+    </section>
+
+    <section class="seminar-section">
+        <span class="subtitle-gold">Wissenstransfer</span>
+        <h2>Seminare</h2>
+        <p style="margin-bottom: 40px; font-size: 0.95rem;">Aktuelle Termine in Ihrer Nähe auf telefonische Anfrage. Dr. Kai Scharff ist als Referent verschiedener Seminarreihen deutschlandweit tätig:</p>
+
+        <div class="seminar-box">
+            <h3>Aktuelle Themen</h3>
+            <div class="seminar-item">Aktuelles Umsatzsteuerrecht</div>
+            <div class="seminar-item">Die Einkommensteuererklärung</div>
+            <div class="seminar-item">Fachlich kompetente und vertrauensvolle Partnerships in allen Belangen Ihres Steuerbürgerlebens</div>
+        </div>
+
+        <div class="seminar-box" style="margin-top: 40px;">
+            <h3>Bei Bedarf individuelle Seminarreihen</h3>
+            <div class="seminar-item">Die Körperschaftsteuererklärung</div>
+            <div class="seminar-item">Abgabenordnung / Finanzgerichtsordnung</div>
+        </div>
+    </section>
+
+    <section class="team-section" id="team">
+        <div style="text-align: center;">
+            <span class="subtitle-gold">Ihre Ansprechpartner</span>
+            <h2>Das Team von steudata</h2>
+        </div>
+        
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-photo">FOTO</div>
+                <h3>Dr. Kai Scharff</h3>
+                <p class="role">Steuerberater / Geschäftsführer</p>
+                <p class="desc">Diplom-Ökonom</p>
+                <a href="mailto:scharff@steudata.de">scharff@steudata.de</a>
+            </div>
+            <div class="team-card">
+                <div class="team-photo">FOTO</div>
+                <h3>Kim Baumbach</h3>
+                <p class="role">Kanzleileitung</p>
+                <p class="desc">Steuerfachangestellte</p>
+                <a href="mailto:baumbach@steudata.de">baumbach@steudata.de</a>
+            </div>
+            <div class="team-card">
+                <div class="team-photo">FOTO</div>
+                <h3>Jennifer Theobald</h3>
+                <p class="role">Assistenz der Kanzleileitung</p>
+                <p class="desc">&nbsp;</p>
+                <a href="mailto:theobald@steudata.de">theobald@steudata.de</a>
+            </div>
+            <div class="team-card">
+                <div class="team-photo">FOTO</div>
+                <h3>Lisa Grabow</h3>
+                <p class="role">Bachelor of Science</p>
+                <p class="desc">&nbsp;</p>
+                <a href="mailto:grabow@steudata.de">grabow@steudata.de</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="service-section">
+        <span class="subtitle-gold">Informationen</span>
+        <h2>Unser Service für Sie</h2>
+        <p style="font-size: 0.95rem;">Informationen und Services zu den Themen Steuern, Recht und Wirtschaft finden Sie auf folgenden Websites:</p>
+        
+        <div class="service-grid">
+            <a href="http://www.steuernetz.de" target="_blank" class="service-link">
+                <h4>Steuernetz</h4>
+                <p>Alles rund um das Thema Steuern, Gesetzes-Texte, Urteile und Leitsätze, Afa-Tabellen sowie ein Steuerlexikon.</p>
+                <span>www.steuernetz.de</span>
+            </a>
+            <a href="http://www.bzst.de" target="_blank" class="service-link">
+                <h4>Bundesamt für Finanzen</h4>
+                <p>Informationen zu aktuellen Themen wie z. B. Kindergeld, Umsatzsteuer und Doppelbesteuerung.</p>
+                <span>www.bzst.de</span>
+            </a>
+            <a href="http://www.steuerzahler.de" target="_blank" class="service-link">
+                <h4>Bund der Steuerzahler</h4>
+                <p>Informationen aus den Bereichen Staatsverschuldung, Steuern, aktuelle Forderungen, Staatsausgaben und Verschwendung.</p>
+                <span>www.steuerzahler.de</span>
+            </a>
+            <a href="http://www.steuertipps.de" target="_blank" class="service-link">
+                <h4>Akademische Arbeitsgemeinschaft</h4>
+                <p>Neben aktuellen Wirtschaftsnachrichten finden Sie hier interessante Tipps und Informationen zu den Themen Steuern, Recht und Geld.</p>
+                <span>www.steuertipps.de</span>
+            </a>
+            <a href="http://www.banktip.de" target="_blank" class="service-link">
+                <h4>Steuergesetze</h4>
+                <p>Wichtige Steuergesetze im Überblick.</p>
+                <span>www.banktip.de</span>
+            </a>
+            <a href="http://www.datev.de" target="_blank" class="service-link">
+                <h4>DATEV</h4>
+                <p>Das Portal für Steuerberater, Wirtschaftsprüfer und Rechtsanwälte.</p>
+                <span>www.datev.de</span>
+            </a>
+            <a href="http://www.nwb.de" target="_blank" class="service-link">
+                <h4>NWB</h4>
+                <p>Aktuelle steuerliche Änderungen im Verlag Neue Wirtschafts-Briefe.</p>
+                <span>www.nwb.de</span>
+            </a>
+            <a href="http://www.wiwo.de" target="_blank" class="service-link">
+                <h4>Wirtschaft-online</h4>
+                <p>Informationsdienst für Produkt- und Unternehmensinformationen.</p>
+                <span>www.wiwo.de</span>
+            </a>
+            <a href="http://www.dstv.de" target="_blank" class="service-link">
+                <h4>Deutscher Steuerberater-Verband</h4>
+                <p>Die Website für alle Steuerzahler.</p>
+                <span>www.dstv.de</span>
+            </a>
+            <a href="http://www.iww.de" target="_blank" class="service-link">
+                <h4>Institut für Wirtschaftspublizistik</h4>
+                <p>Praxiswissen für Steuerzahler, Freiberufler und Unternehmen.</p>
+                <span>www.iww.de</span>
+            </a>
+        </div>
+    </section>
+
+    <footer id="kontakt">
+        <h2 style="font-size: 1.8rem; margin-bottom: 10px;">steudata</h2>
+        <p style="font-size: 0.9rem; color: var(--accent-gold); margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px;">Steuerberatungsgesellschaft mbH</p>
+        
+        <p class="footer-info">Heestweg 16<br>DE-22143 Hamburg</p>
+        <p class="footer-info" style="margin-top: 20px;">
+            Tel: <a href="tel:+49402201338">040 220 13 38</a><br>
+            Fax: 040 22 40 82
+        </p>
+        <p class="footer-info" style="margin-top: 20px;">
+            E-Mail: <a href="mailto:info@steudata.de">info@steudata.de</a>
+        </p>
+        
+        <div style="margin-top: 40px; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 8px; max-width: 600px; margin-inline: auto; text-align: left;">
+            <h4 style="color: var(--accent-gold); margin-bottom: 10px; font-size: 0.9rem; text-transform: uppercase;">Anfahrt mit dem PKW</h4>
+            <p style="font-size: 0.85rem; font-weight: 300; line-height: 1.5; margin-bottom: 15px;">Fahren Sie die B75 stadtauswärts. Von der Bargteheider Straße biegen Sie nach rechts in die Scharbeutzer Straße ein und nach etwa 200 m nach links in den Heestweg. Die Auffahrt zu den Parkplätzen befindet sich neben Gebäude 14. Bei geschlossener Schranke betätigen Sie bitte den Klingelknopf. Erreichbarkeit mit öffentlichen Verkehrsmitteln fahren Sie mit der R10 bis Rahlstedt. Der Fußweg über den Doberaner Weg dauert etwa 7 Minuten.</p>
+            
+            <div class="map-container">
+                <iframe src="https://maps.google.com/maps?q=Heestweg%2016,%2022143%20Hamburg&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+            </div>
+            
+            <div style="margin-top: 15px;">
+                <a href="https://www.google.com/maps/search/?api=1&query=steudata+Steuerberatungsgesellschaft+Heestweg+16+Hamburg" target="_blank" class="btn btn-gold" style="font-size: 0.75rem; padding: 12px 20px;">
+                    Route in Google Maps öffnen ➔
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-links">
+            <a href="#">Impressum</a>
+            <a href="#">Datenschutz</a>
+            <a href="#">Cookie-Richtlinie</a>
+        </div>
+    </footer>
+
+</body>
+</html>
