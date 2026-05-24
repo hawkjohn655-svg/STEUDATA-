@@ -4,241 +4,714 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>steudata Steuerberatungsgesellschaft mbH | Hamburg</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
-        :root {
-            --bg-base: #F4F1EA;       /* Elegancki, matowy odcień alabastru */
-            --bg-glass: rgba(255, 255, 255, 0.45); /* Efekt idealnego, czystego szkła */
-            --text-dark: #0D353A;     /* Głęboka zieleń butelkowa ze zrzutu ekranu */
-            --text-muted: #3D5254;    
-            --accent-gold: #C5A059;   /* Szampańskie złoto */
-            --accent-gold-dark: #A37F3D;
-            --border-glass: rgba(255, 255, 255, 0.5);
-            --border-dark: rgba(13, 53, 58, 0.08);
-            --radius-premium: 24px;
-            
-            /* Warstwowe cienie dające efekt trójwymiarowej wypukłości */
-            --shadow-3d: 0 20px 40px rgba(13, 53, 58, 0.06), 0 1px 3px rgba(0, 0, 0, 0.02);
-            --shadow-hover: 0 35px 70px rgba(13, 53, 58, 0.12), 0 10px 20px rgba(197, 160, 89, 0.1);
-            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+:root {
+        /* PODKRĘCONA, CIEMNA PALETA BARW PREMIUM COFFE & TEAL */
+        --bg-main: #061F22;
+        /* Głęboka, luksusowa zieleń hanzeatycka */
+        --bg-darker: #031214;
+        /* Ciemna baza do odcięcia stopek */
+        --bg-glass: rgba(255, 255, 255, 0.03);
+        /* Przezroczyste, delikatne szkło */
+        --bg-glass-hover: rgba(255, 255, 255, 0.07);
+        --text-light: #F9FAFB;
+        --text-muted: #9CA3AF;
+        --accent-gold: #E5C185;
+        /* Szlachetne, nasycone złoto szampańskie */
+        --accent-gold-dark: #C5A059;
+        --border-glass: rgba(255, 255, 255, 0.08);
+        --radius-premium: 24px;
+
+        --shadow-3d: 0 20px 40px rgba(0, 0, 0, 0.3);
+        --shadow-hover: 0 30px 60px rgba(229, 193, 133, 0.12);
+        --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+        /* --- WARUNKI BEZPIECZEŃSTWA DLA SMARTFONÓW --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        
         body {
             overflow-x: hidden;
             width: 100%;
-            background-color: var(--bg-base);
-            color: var(--text-dark);
+            background-color: var(--bg-main);
+            color: var(--text-light);
             font-family: 'Plus Jakarta Sans', sans-serif;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
 
-        section, footer { scroll-margin-top: 120px; }
+        section, footer {
+            scroll-margin-top: 110px;
+        }
 
-        h1 { font-size: clamp(2.3rem, 7.5vw, 4rem); font-weight: 800; letter-spacing: -1px; line-height: 1.15; }
-        h2 { font-size: clamp(1.7rem, 6vw, 2.6rem); font-weight: 700; letter-spacing: -0.5px; }
-        h3 { font-size: 1.3rem; font-weight: 700; }
+        h1 {
+            font-size: clamp(2.3rem, 7.5vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.15;
+            color: #fff;
+        }
+        h2 {
+            font-size: clamp(1.7rem, 6vw, 2.5rem);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #fff;
+        }
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
 
         .gold-badge {
-            color: var(--accent-gold-dark); font-size: 0.8rem; font-weight: 700; 
-            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; display: inline-block;
+            color: var(--accent-gold);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            display: inline-block;
         }
 
-        /* --- INTRO PRELOADER (PULSUJĄCY PARAGRAF) --- */
+        /* --- INTRO PRELOADER --- */
         #preloader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: var(--text-dark);
-            display: flex; justify-content: center; align-items: center;
-            z-index: 9999; transition: opacity 0.6s ease, visibility 0.6s ease;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-darker);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
         .preloader-symbol {
-            font-size: 6rem; color: var(--accent-gold);
-            font-weight: 300; animation: pulse 1.6s infinite ease-in-out;
+            font-size: 5rem;
+            color: var(--accent-gold);
+            font-weight: 300;
+            animation: pulse 1.5s infinite ease-in-out;
         }
         @keyframes pulse {
-            0%, 100% { opacity: 0.25; transform: scale(0.93); filter: blur(2px); }
-            50% { opacity: 1; transform: scale(1.05); filter: blur(0); }
+            0%, 100% {
+                opacity: 0.3;
+                transform: scale(0.95);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
         }
 
-        /* --- ELEGANCKIE TRÓJWYMIAROWE ZNAKI WODNE W TLE --- */
-        .bg-legal-icon {
-            position: absolute; font-weight: 300;
-            color: rgba(13, 53, 58, 0.03); pointer-events: none; user-select: none; z-index: 0;
+        /* --- SUBTELNE SZEPTANE PARAGRAFÓW W TLE --- */
+        .legal-bg-symbol {
+            position: absolute;
+            font-weight: 300;
             font-family: serif;
+            color: rgba(255, 255, 255, 0.015);
+            pointer-events: none;
+            user-select: none;
+            z-index: 0;
         }
-        .icon-paragraf-1 { font-size: 22rem; top: 8%; right: -3%; transform: rotate(12deg); }
-        .icon-paragraf-2 { font-size: 16rem; bottom: 12%; left: -5%; transform: rotate(-18deg); }
+        .sym-1 {
+            font-size: 24rem;
+            top: 5%;
+            right: -2%;
+            transform: rotate(15deg);
+        }
+        .sym-2 {
+            font-size: 18rem;
+            bottom: 10%;
+            left: -4%;
+            transform: rotate(-12deg);
+        }
 
-        /* --- FLOATING NAVIGATION (SMART GLASS) --- */
+        /* --- PŁYWAJĄCA BELKA SMART GLASS --- */
         header.smart-header {
-            position: sticky; top: 0; z-index: 2000;
-            background: rgba(244, 241, 234, 0.75);
-            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-            border-bottom: 1px solid rgba(13, 53, 58, 0.08);
-            box-shadow: 0 4px 30px rgba(13, 53, 58, 0.02);
+            position: sticky;
+            top: 0;
+            z-index: 2000;
+            background: rgba(6, 31, 34, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-glass);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
         }
 
         nav {
             padding: 16px 20px;
-            display: flex; flex-direction: column; gap: 12px;
-            max-width: 1200px; margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .nav-top { width: 100%; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 23px; font-weight: 800; color: var(--text-dark); text-decoration: none; letter-spacing: -0.5px; }
-        .logo span { color: var(--accent-gold); font-weight: 300; }
-        
-        .nav-links-scroll { 
-            display: flex; gap: 8px; width: 100%; 
-            overflow-x: auto; white-space: nowrap; padding-bottom: 4px; 
+        .nav-top {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            color: var(--accent-gold);
+            font-weight: 300;
+        }
+
+        .nav-links-scroll {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 4px;
             -webkit-overflow-scrolling: touch;
         }
-        .nav-links-scroll::-webkit-scrollbar { display: none; }
-        
-        .nav-links-scroll a { 
-            text-decoration: none; color: var(--text-dark); font-size: 0.8rem; font-weight: 700; 
-            text-transform: uppercase; letter-spacing: 1px; padding: 10px 16px; 
-            background: rgba(13, 53, 58, 0.04); border-radius: 12px; transition: var(--transition);
+        .nav-links-scroll::-webkit-scrollbar {
+            display: none;
         }
-        .nav-links-scroll a:hover { color: #fff; background: var(--text-dark); }
-        .nav-links-scroll a.active-btn { background: var(--text-dark); color: #fff; border: 1px solid var(--accent-gold); }
 
-        /* --- PRZYCISKI (BUTTONS) --- */
-        .btn {
-            display: inline-flex; align-items: center; justify-content: center; text-decoration: none;
-            padding: 18px 36px; border-radius: 16px; font-size: 0.95rem; font-weight: 700; 
-            transition: var(--transition); border: none; cursor: pointer; width: 100%; text-transform: uppercase; letter-spacing: 1px;
-        }
-        .btn-dark { background-color: var(--text-dark); color: #fff; box-shadow: 0 12px 30px rgba(13, 53, 58, 0.15); }
-        .btn-dark:hover { background-color: #14444a; transform: translateY(-3px); box-shadow: 0 18px 40px rgba(13, 53, 58, 0.25); }
-        .btn-gold { background-color: var(--bg-glass); color: var(--text-dark); border: 1px solid var(--border-glass); backdrop-filter: blur(8px); box-shadow: var(--shadow-3d); }
-        .btn-gold:hover { background-color: rgba(255,255,255,0.8); transform: translateY(-3px); border-color: var(--accent-gold); }
-
-        /* --- HERO --- */
-        .hero { padding: 40px 20px 60px; text-align: center; max-width: 900px; margin: 0 auto; position: relative; }
-        .hero p { margin-top: 20px; margin-bottom: 36px; font-size: 1.1rem; color: var(--text-muted); }
-        
-        .hero-banner { width: 100%; height: 260px; margin-bottom: 36px; border-radius: var(--radius-premium); overflow: hidden; box-shadow: var(--shadow-3d); border: 1px solid var(--border-glass); }
-        .hero-banner img { width: 100%; height: 100%; object-fit: cover; }
-
-        .btn-holder { display: flex; flex-direction: column; gap: 14px; position: relative; z-index: 5; }
-
-        /* --- SEKCJE --- */
-        section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; position: relative; }
-        .section-header { margin-bottom: 44px; position: relative; z-index: 5; }
-        .section-header p { margin-top: 14px; font-size: 1.1rem; color: var(--text-muted); }
-
-        /* --- WYPUKŁE KAFELKI SZKLANE (GLASSMORPHISM) --- */
-        .lux-grid { display: grid; grid-template-columns: 1fr; gap: 20px; position: relative; z-index: 5; }
-        .glass-card {
-            background: var(--bg-glass); padding: 40px 32px; border-radius: var(--radius-premium);
-            border: 1px solid var(--border-glass); box-shadow: var(--shadow-3d);
-            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        .nav-links-scroll a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 10px 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-glass);
+            border-radius: 12px;
             transition: var(--transition);
         }
-        .glass-card:hover { 
-            transform: translateY(-6px) scale(1.01); 
-            box-shadow: var(--shadow-hover); 
-            border-color: var(--accent-gold); 
-            background: rgba(255, 255, 255, 0.75); 
+        .nav-links-scroll a:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.06);
         }
-        .glass-card h3 { margin-bottom: 12px; color: var(--text-dark); font-weight: 700; }
-        .glass-card p { font-size: 0.95rem; line-height: 1.65; color: var(--text-muted); }
+        .nav-links-scroll a.active-btn {
+            background: var(--accent-gold);
+            color: var(--bg-main);
+            border-color: var(--accent-gold);
+        }
+
+        /* --- PRZYCISKI PREMIUM --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 18px 36px;
+            border-radius: 16px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn-dark {
+            background-color: var(--accent-gold);
+            color: var(--bg-main);
+            box-shadow: 0 10px 30px rgba(229, 193, 133, 0.15);
+        }
+        .btn-dark:hover {
+            background-color: #fff;
+            color: var(--bg-main);
+            transform: translateY(-2px);
+        }
+        .btn-gold {
+            background-color: var(--bg-glass);
+            color: #fff;
+            border: 1px solid var(--border-glass);
+            backdrop-filter: blur(8px);
+        }
+        .btn-gold:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            border-color: var(--accent-gold);
+        }
+
+        /* --- HERO --- */
+        .hero {
+            padding: 40px 20px 60px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .hero p {
+            margin-top: 20px;
+            margin-bottom: 36px;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .hero-banner {
+            width: 100%;
+            height: 260px;
+            margin-bottom: 36px;
+            border-radius: var(--radius-premium);
+            overflow: hidden;
+            box-shadow: var(--shadow-3d);
+            border: 1px solid var(--border-glass);
+            position: relative;
+            z-index: 5;
+        }
+        .hero-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .btn-holder {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            position: relative;
+            z-index: 5;
+        }
+
+        /* --- SEKCJE --- */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .section-header {
+            margin-bottom: 44px;
+            position: relative;
+            z-index: 5;
+        }
+        .section-header p {
+            margin-top: 14px;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        /* --- OKIENKA CIEMNEGO SZKŁA (GLASSMORPHISM 3D) --- */
+        .lux-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            position: relative;
+            z-index: 5;
+        }
+        .glass-card {
+            background: var(--bg-glass);
+            padding: 40px 32px;
+            border-radius: var(--radius-premium);
+            border: 1px solid var(--border-glass);
+            box-shadow: var(--shadow-3d);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: var(--transition);
+        }
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent-gold);
+            background: var(--bg-glass-hover);
+        }
+        .glass-card h3 {
+            margin-bottom: 12px;
+            color: #fff;
+            font-weight: 700;
+        }
+        .glass-card p {
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: var(--text-muted);
+        }
 
         /* --- WECHSELSERVICE --- */
-        .flow-layout { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 36px; position: relative; z-index: 5; }
-        .flow-node { background: var(--bg-glass); border: 1px solid var(--border-glass); backdrop-filter: blur(16px); padding: 32px; border-radius: var(--radius-premium); border-left: 5px solid var(--accent-gold); box-shadow: var(--shadow-3d); transition: var(--transition); }
-        .flow-node:hover { transform: translateY(-3px); background: rgba(255,255,255,0.7); box-shadow: var(--shadow-hover); }
-        .flow-node span { font-size: 0.8rem; font-weight: 800; color: var(--accent-gold-dark); text-transform: uppercase; display: block; margin-bottom: 6px; }
-        .flow-node p { color: var(--text-muted); font-size: 0.95rem; }
+        .flow-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 36px;
+            position: relative;
+            z-index: 5;
+        }
+        .flow-node {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            backdrop-filter: blur(16px);
+            padding: 32px;
+            border-radius: var(--radius-premium);
+            border-left: 5px solid var(--accent-gold);
+            box-shadow: var(--shadow-3d);
+            transition: var(--transition);
+        }
+        .flow-node:hover {
+            transform: translateY(-3px);
+            background: var(--bg-glass-hover);
+        }
+        .flow-node span {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .flow-node h4 {
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        .flow-node p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
 
-        /* --- SEMINARE (CZYSTA LISTA SZKLANA) --- */
-        .seminar-list-box { background: var(--bg-glass); backdrop-filter: blur(16px); border: 1px solid var(--border-glass); border-radius: var(--radius-premium); overflow: hidden; box-shadow: var(--shadow-3d); position: relative; z-index: 5; }
-        .seminar-row { padding: 24px; border-bottom: 1px solid rgba(13, 53, 58, 0.05); display: flex; align-items: center; gap: 16px; transition: var(--transition); }
-        .seminar-row:hover { background: rgba(255,255,255,0.4); padding-left: 32px; }
-        .seminar-row:last-child { border-bottom: none; }
-        .seminar-icon { color: var(--accent-gold); font-weight: bold; font-size: 1.2rem; }
-        .seminar-text { font-size: 1.05rem; font-weight: 600; color: var(--text-dark); }
+        /* --- SEMINARE (SZKLANE LISTY) --- */
+        .seminar-list-box {
+            background: var(--bg-glass);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-premium);
+            overflow: hidden;
+            box-shadow: var(--shadow-3d);
+            position: relative;
+            z-index: 5;
+        }
+        .seminar-row {
+            padding: 24px;
+            border-bottom: 1px solid var(--border-glass);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: var(--transition);
+        }
+        .seminar-row:hover {
+            background: var(--bg-glass-hover);
+            padding-left: 32px;
+        }
+        .seminar-row:last-child {
+            border-bottom: none;
+        }
+        .seminar-icon {
+            color: var(--accent-gold);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .seminar-text {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #fff;
+        }
 
         /* --- TEAM --- */
-        .team-layout { display: grid; grid-template-columns: 1fr; gap: 20px; position: relative; z-index: 5; }
-        .team-card { background: var(--bg-glass); border: 1px solid var(--border-glass); backdrop-filter: blur(16px); padding: 40px 24px; border-radius: var(--radius-premium); text-align: center; box-shadow: var(--shadow-3d); transition: var(--transition); }
-        .team-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.7); box-shadow: var(--shadow-hover); }
-        .team-initials { width: 80px; height: 80px; background: rgba(255,255,255,0.6); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: var(--accent-gold-dark); font-size: 1.2rem; font-weight: 700; border: 2px solid var(--accent-gold); box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); }
-        .team-card h4 { font-size: 1.2rem; color: var(--text-dark); }
-        .team-card .role { color: var(--accent-gold-dark); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; margin-top: 4px; margin-bottom: 16px; }
-        .team-card a { color: var(--text-dark); font-size: 0.9rem; font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--accent-gold); padding-bottom: 2px; }
+        .team-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            position: relative;
+            z-index: 5;
+        }
+        .team-card {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            backdrop-filter: blur(16px);
+            padding: 40px 24px;
+            border-radius: var(--radius-premium);
+            text-align: center;
+            box-shadow: var(--shadow-3d);
+            transition: var(--transition);
+        }
+        .team-card:hover {
+            transform: translateY(-5px);
+            background: var(--bg-glass-hover);
+            border-color: var(--accent-gold);
+        }
+        .team-card h4 {
+            color: #fff;
+        }
+        .team-initials {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: 2px solid var(--accent-gold);
+        }
+        .team-card .role {
+            color: var(--accent-gold);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-top: 4px;
+            margin-bottom: 16px;
+        }
+        .team-card p {
+            color: var(--text-muted);
+        }
+        .team-card a {
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 2px;
+        }
 
         /* --- REKRUTACJA --- */
-        .join-box { background: var(--text-dark); color: #fff; padding: 50px 30px; border-radius: var(--radius-premium); text-align: center; margin-top: 40px; box-shadow: var(--shadow-hover); position: relative; z-index: 5; }
-        .join-box h3 { color: #fff; font-size: 1.8rem; margin-bottom: 14px; }
-        .join-box p { color: #A5B6B8; margin-bottom: 28px; }
-
-        /* --- LINKI SYSTEMOWE --- */
-        .link-grid { display: grid; grid-template-columns: 1fr; gap: 16px; position: relative; z-index: 5; }
-        .link-node { background: var(--bg-glass); border: 1px solid var(--border-glass); backdrop-filter: blur(16px); padding: 28px; border-radius: 16px; text-decoration: none; color: var(--text-dark); transition: var(--transition); box-shadow: var(--shadow-3d); }
-        .link-node:hover { border-color: var(--accent-gold); transform: translateY(-3px); background: #fff; box-shadow: var(--shadow-hover); }
-        .link-node h4 { font-size: 1.1rem; margin-bottom: 6px; color: var(--accent-gold-dark); }
-        .link-node p { font-size: 0.85rem; color: var(--text-muted); }
-
-        /* --- NOWOCZESNA MAPA GOOGLE --- */
-        .map-frame-holder { 
-            width: 100%; height: 320px; border-radius: var(--radius-premium); 
-            overflow: hidden; margin: 32px 0; border: 1px solid var(--border-glass); 
-            box-shadow: var(--shadow-3d); position: relative; z-index: 5;
+        .join-box {
+            background: rgba(0,0,0,0.15);
+            border: 1px solid var(--border-glass);
+            color: #fff;
+            padding: 50px 30px;
+            border-radius: var(--radius-premium);
+            text-align: center;
+            margin-top: 40px;
+            box-shadow: var(--shadow-3d);
+            position: relative;
+            z-index: 5;
         }
-        .map-frame-holder iframe { width: 100%; height: 100%; border: none; }
+        .join-box h3 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 14px;
+        }
+        .join-box p {
+            color: var(--text-muted);
+            margin-bottom: 28px;
+        }
+
+        /* --- SERWIS / LINKI --- */
+        .link-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            position: relative;
+            z-index: 5;
+        }
+        .link-node {
+            background: var(--bg-glass);
+            border: 1px solid var(--border-glass);
+            backdrop-filter: blur(16px);
+            padding: 28px;
+            border-radius: 16px;
+            text-decoration: none;
+            color: #fff;
+            transition: var(--transition);
+            box-shadow: var(--shadow-3d);
+        }
+        .link-node:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-3px);
+            background: var(--bg-glass-hover);
+        }
+        .link-node h4 {
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+            color: var(--accent-gold);
+        }
+        .link-node p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* --- PRAWDZIWA ODPOWIEDNIA MAPA GOOGLE --- */
+        .map-frame-holder {
+            width: 100%;
+            height: 320px;
+            border-radius: var(--radius-premium);
+            overflow: hidden;
+            margin: 32px 0;
+            border: 1px solid var(--border-glass);
+            box-shadow: var(--shadow-3d);
+            position: relative;
+            z-index: 5;
+        }
+        .map-frame-holder iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
 
         /* --- FOOTER KANCELARII --- */
-        footer { background-color: var(--text-dark); color: #fff; padding: 70px 20px; border-radius: 32px 32px 0 0; position: relative; }
-        footer h2 { font-size: 2rem; color: #fff; margin-bottom: 6px; }
-        .footer-sub { color: #A5B6B8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 36px; }
-        
-        .action-phone-mail { color: #fff; text-decoration: none; font-weight: 600; font-size: 1.2rem; display: block; margin-bottom: 14px; transition: color 0.3s; }
-        .action-phone-mail:hover { color: var(--accent-gold); }
-        
-        .navigation-instructions { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 32px 24px; border-radius: 20px; margin: 40px 0; text-align: left; position: relative; z-index: 5; }
-        .navigation-instructions h4 { color: var(--accent-gold); font-size: 0.95rem; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
-        .navigation-instructions p { font-size: 0.9rem; color: #A5B6B8; line-height: 1.6; }
+        footer {
+            background-color: var(--bg-darker);
+            color: #fff;
+            padding: 80px 20px 50px;
+            border-radius: 32px 32px 0 0;
+            position: relative;
+            border-top: 1px solid var(--border-glass);
+        }
+        footer h2 {
+            font-size: 2.2rem;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        .footer-sub {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 36px;
+        }
 
-        .meta-end { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 30px; display: flex; justify-content: center; gap: 28px; font-size: 0.85rem; position: relative; z-index: 5; }
-        .meta-end a { color: #A5B6B8; text-decoration: none; }
+        .action-phone-mail {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.3rem;
+            display: block;
+            margin-bottom: 14px;
+            transition: color 0.3s;
+        }
+        .action-phone-mail:hover {
+            color: var(--accent-gold);
+        }
+
+        .navigation-instructions {
+            background: rgba(255,255,255,0.01);
+            border: 1px solid rgba(255,255,255,0.04);
+            padding: 36px 24px;
+            border-radius: 20px;
+            margin: 40px 0;
+            text-align: left;
+            position: relative;
+            z-index: 5;
+        }
+        .navigation-instructions h4 {
+            color: var(--accent-gold);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .navigation-instructions p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .meta-end {
+            border-top: 1px solid rgba(255,255,255,0.04);
+            padding-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 5;
+        }
+        .meta-end a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
 
         /* --- PC OPTIMIZATION (RWD) --- */
         @media (min-width: 768px) {
-            nav { flex-direction: row; padding: 20px 5%; gap: 0; justify-content: space-between; }
-            .nav-top { width: auto; }
-            .nav-links-scroll { width: auto; overflow: visible; gap: 16px; }
-            .nav-links-scroll a { font-size: 0.9rem; background: transparent; padding: 6px 0; border-radius: 0; }
-            .nav-links-scroll a:hover { background: transparent; color: var(--accent-gold); }
-            .nav-links-scroll a.active-btn { background: var(--text-dark); color: #fff; padding: 8px 16px; border-radius: 12px; border: 1px solid var(--accent-gold); }
-            
-            .btn-holder { flex-direction: row; justify-content: center; gap: 20px; }
-            .btn { width: auto; }
-            .hero { padding: 80px 24px 100px; }
-            .hero-banner { height: 460px; }
-            .lux-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-            .flow-layout { grid-template-columns: repeat(4, 1fr); gap: 20px; }
-            .team-layout { grid-template-columns: repeat(4, 1fr); gap: 20px; }
-            .link-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
-            .map-frame-holder { height: 480px; }
+            nav {
+                flex-direction: row;
+                padding: 22px 5%;
+                gap: 0;
+                justify-content: space-between;
+            }
+            .nav-top {
+                width: auto;
+            }
+            .nav-links-scroll {
+                width: auto;
+                overflow: visible;
+                gap: 16px;
+            }
+            .nav-links-scroll a {
+                font-size: 0.9rem;
+                background: transparent;
+                padding: 6px 0;
+                border: none;
+                color: var(--text-muted);
+            }
+            .nav-links-scroll a:hover {
+                background: transparent;
+                color: #fff;
+            }
+            .nav-links-scroll a.active-btn {
+                background: var(--accent-gold);
+                color: var(--bg-main);
+                padding: 10px 20px;
+                border-radius: 14px;
+            }
+
+            .btn-holder {
+                flex-direction: row;
+                justify-content: center;
+                gap: 20px;
+            }
+            .btn {
+                width: auto;
+            }
+            .hero {
+                padding: 100px 24px 140px;
+            }
+            .hero-banner {
+                height: 480px;
+            }
+            .lux-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+            .flow-layout {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+            }
+            .team-layout {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+            }
+            .link-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+            .map-frame-holder {
+                height: 500px;
+            }
         }
         @media (min-width: 1024px) {
-            .lux-grid { grid-template-columns: repeat(3, 1fr); }
+            .lux-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
     </style>
 </head>
 <body>
 
     <div id="preloader">
-        <div class="preloader-symbol">§</div>
+        <div class="preloader-symbol">
+            §
+        </div>
     </div>
 
     <header class="smart-header">
@@ -257,13 +730,17 @@
     </header>
 
     <header class="hero">
-        <div class="bg-legal-icon icon-paragraf-1">§</div>
+        <div class="legal-bg-symbol sym-1">
+            §
+        </div>
         <span class="gold-badge">Digitale Exzellenz</span>
         <h1>Steuerberatung in Hamburg</h1>
-        <p>Wir verknüpfen innovative digitale Workflows mit verlässlicher, persönlicher Beratung. Steuerberatung neu gedacht für den hanseatischen Mittelstand.</p>
-        
+        <p>
+            Wir verknüpfen innovative digitale Workflows mit verlässlicher, persönlicher Beratung. Steuerberatung neu gedacht für den hanseatischen Mittelstand.
+        </p>
+
         <div class="hero-banner">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop" alt="Hamburg Hafen Business Center">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop" alt="Hamburg Skyline Modern Center">
         </div>
 
         <div class="btn-holder">
@@ -273,37 +750,53 @@
     </header>
 
     <section id="kanzlei">
-        <div class="bg-legal-icon icon-paragraf-2">§</div>
+        <div class="legal-bg-symbol sym-2">
+            §
+        </div>
         <div class="section-header">
             <span class="gold-badge">Kompetenzen</span>
             <h2>Engagement und fachliche Präzision</h2>
-            <p>Wir navigieren Sie rechtssicher durch das Steuersystem der Bundesrepublik Deutschland. Unser Beratungsangebot deckt alle individuellen Facetten ab.</p>
+            <p>
+                Wir navigieren Sie rechtssicher durch das Steuersystem der Bundesrepublik Deutschland. Unser Beratungsangebot deckt alle individuellen Facetten ab.
+            </p>
         </div>
-        
+
         <div class="lux-grid">
             <div class="glass-card">
                 <h3>Vertrauensvolle Partnerschaft</h3>
-                <p>Fachlich fundierte und dauerhafte Begleitung in allen steuerlichen Belangen Ihres Lebens.</p>
+                <p>
+                    Fachlich fundierte und dauerhafte Begleitung in allen steuerlichen Belangen Ihres Lebens.
+                </p>
             </div>
             <div class="glass-card">
                 <h3>Effiziente Beratung</h3>
-                <p>Individuell ausgerichtete Steueroptimierung zur nachhaltigen Senkung Ihrer Belastungen.</p>
+                <p>
+                    Individuell ausgerichtete Steueroptimierung zur nachhaltigen Senkung Ihrer Belastungen.
+                </p>
             </div>
             <div class="glass-card">
                 <h3>Unternehmensberatung</h3>
-                <p>Ganzheitliche betriebswirtschaftliche Analyse und Begleitung Ihrer geschäftlichen Strukturen.</p>
+                <p>
+                    Ganzheitliche betriebswirtschaftliche Analyse und Begleitung Ihrer geschäftlichen Strukturen.
+                </p>
             </div>
             <div class="glass-card">
                 <h3>Fundiertes Fachwissen</h3>
-                <p>Kontinuierlich geschultes Expertenwissen in den dynamischen Sektoren Recht, Wirtschaft und Steuern.</p>
+                <p>
+                    Kontinuierlich geschultes Expertenwissen in den dynamischen Sektoren Recht, Wirtschaft und Steuern.
+                </p>
             </div>
             <div class="glass-card">
                 <h3>Termintreue & Transparenz</h3>
-                <p>Lückenlose Einhaltung aller steuerlichen Fristen bei absoluter Transparenz der Prozesse.</p>
+                <p>
+                    Lückenlose Einhaltung aller steuerlichen Fristen bei absoluter Transparenz der Prozesse.
+                </p>
             </div>
             <div class="glass-card">
                 <h3>Kalkulierbare Gebühren</h3>
-                <p>Faire, transparente und nachvollziehbare Vergütungsstrukturen ohne unvorhergesehene Kosten.</p>
+                <p>
+                    Faire, transparente und nachvollziehbare Vergütungsstrukturen ohne unvorhergesehene Kosten.
+                </p>
             </div>
         </div>
     </section>
@@ -312,29 +805,39 @@
         <div class="section-header">
             <span class="gold-badge">Einfacher Wechsel</span>
             <h2>Digitaler Wechselservice</h2>
-            <p>Ein Kanzleiwechsel zu steudata läuft vollkommen geräuschlos im Hintergrund. Wir übernehmen die lückenlose Übernahme Ihrer Daten.</p>
+            <p>
+                Ein Kanzleiwechsel zu steudata läuft vollkommen geräuschlos im Hintergrund. Wir übernehmen die lückenlose Übernahme Ihrer Daten.
+            </p>
         </div>
-        
+
         <div class="flow-layout">
             <div class="flow-node">
                 <span>01. Analyse</span>
                 <h4>Erstgespräch</h4>
-                <p>Kostenfreie Ersteinschätzung Ihrer Potenziale.</p>
+                <p>
+                    Kostenfreie Ersteinschätzung Ihrer Potenziale.
+                </p>
             </div>
             <div class="flow-node">
                 <span>02. Mandat</span>
                 <h4>Diskreter Kontakt</h4>
-                <p>Wir fordern Ihre Akten direkt beim Altberater an.</p>
+                <p>
+                    Wir fordern Ihre Akten direkt beim Altberater an.
+                </p>
             </div>
             <div class="flow-node">
                 <span>03. System</span>
                 <h4>DATEV-Transfer</h4>
-                <p>Verlustfreie, rein digitale Übernahme der Historie.</p>
+                <p>
+                    Verlustfreie, rein digitale Übernahme der Historie.
+                </p>
             </div>
             <div class="flow-node">
                 <span>04. Start</span>
                 <h4>Aktive Betreuung</h4>
-                <p>Ihre steuerliche Zukunft beginnt ab sofort proaktiv.</p>
+                <p>
+                    Ihre steuerliche Zukunft beginnt ab sofort proaktiv.
+                </p>
             </div>
         </div>
     </section>
@@ -343,9 +846,11 @@
         <div class="section-header">
             <span class="gold-badge">Wissen</span>
             <h2>Seminare & Vorträge</h2>
-            <p>Dr. Kai Scharff referiert bundesweit zu komplexen Fachthemen. Aktuelle Durchführungstermine erhalten Sie jederzeit auf telefonische Anfrage.</p>
+            <p>
+                Dr. Kai Scharff referiert bundesweit zu komplexen Fachthemen. Aktuelle Durchführungstermine erhalten Sie jederzeit auf telefonische Anfrage.
+            </p>
         </div>
-        
+
         <div class="seminar-list-box">
             <div class="seminar-row">
                 <span class="seminar-icon">➔</span>
@@ -371,41 +876,67 @@
             <span class="gold-badge">Köpfe</span>
             <h2>Das Team von steudata</h2>
         </div>
-        
+
         <div class="team-layout">
             <div class="team-card">
-                <div class="team-initials">KS</div>
+                <div class="team-initials">
+                    KS
+                </div>
                 <h4>Dr. rer. pol. Kai Scharff</h4>
-                <p class="role">Steuerberater / GF</p>
-                <p style="font-size:0.85rem; color:#64748B; margin-bottom:12px;">Diplom-Ökonom</p>
+                <p class="role">
+                    Steuerberater / GF
+                </p>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">
+                    Diplom-Ökonom
+                </p>
                 <a href="mailto:scharff@steudata.de">scharff@steudata.de</a>
             </div>
             <div class="team-card">
-                <div class="team-initials">KB</div>
+                <div class="team-initials">
+                    KB
+                </div>
                 <h4>Kim Baumbach</h4>
-                <p class="role">Kanzleileitung</p>
-                <p style="font-size:0.85rem; color:#64748B; margin-bottom:12px;">Steuerfachangestellte</p>
+                <p class="role">
+                    Kanzleileitung
+                </p>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">
+                    Steuerfachangestellte
+                </p>
                 <a href="mailto:baumbach@steudata.de">baumbach@steudata.de</a>
             </div>
             <div class="team-card">
-                <div class="team-initials">JT</div>
+                <div class="team-initials">
+                    JT
+                </div>
                 <h4>Jennifer Theobald</h4>
-                <p class="role">Kanzleiassistenz</p>
-                <p style="font-size:0.85rem; color:#64748B; margin-bottom:12px;">Management Assistenz</p>
+                <p class="role">
+                    Kanzleiassistenz
+                </p>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">
+                    Management Assistenz
+                </p>
                 <a href="mailto:theobald@steudata.de">theobald@steudata.de</a>
             </div>
             <div class="team-card">
-                <div class="team-initials">LG</div>
+                <div class="team-initials">
+                    LG
+                </div>
                 <h4>Lisa Grabow</h4>
-                <p class="role">Professional</p>
-                <p style="font-size:0.85rem; color:#64748B; margin-bottom:12px;">Bachelor of Science</p>
+                <p class="role">
+                    Professional
+                </p>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:12px;">
+                    Bachelor of Science
+                </p>
                 <a href="mailto:grabow@steudata.de">grabow@steudata.de</a>
             </div>
         </div>
 
         <div class="join-box">
             <h3>Kanzleiwachstum: Karriere bei steudata</h3>
-            <p>Suchen Sie flache Hierarchien und volldigitalisierte Workflows in Hamburg? Bewerben Sie sich initiativ.</p>
+            <p>
+                Suchen Sie flache Hierarchien und volldigitalisierte Workflows in Hamburg? Bewerben Sie sich initiativ.
+            </p>
             <a href="mailto:info@steudata.de" class="btn btn-gold" style="background:transparent; color:#fff; border-color:#fff;">Initiativbewerbung</a>
         </div>
     </section>
@@ -418,38 +949,55 @@
         <div class="link-grid">
             <a href="http://www.steuernetz.de" target="_blank" class="link-node">
                 <h4>Steuernetz ➔</h4>
-                <p>Gesetzestexte, aktuelle Urteile und AfA-Tabellen im Direktzugriff.</p>
+                <p>
+                    Gesetzestexte, aktuelle Urteile und AfA-Tabellen im Direktzugriff.
+                </p>
             </a>
             <a href="http://www.bzst.de" target="_blank" class="link-node">
                 <h4>Bundesamt für Finanzen ➔</h4>
-                <p>Informationen zur Umsatzsteuer und Prüfung von USt-IdNr.</p>
+                <p>
+                    Informationen zur Umsatzsteuer und Prüfung von USt-IdNr.
+                </p>
             </a>
             <a href="http://www.datev.de" target="_blank" class="link-node">
                 <h4>DATEV Unternehmen online ➔</h4>
-                <p>Das sichere, Cloud-basierte System für Ihren digitalen Belegaustausch.</p>
+                <p>
+                    Das sichere, Cloud-basierte System für Ihren digitalen Belegaustausch.
+                </p>
             </a>
         </div>
     </section>
 
-    <section id="kontakt" style="padding: 0;"></section>
-    <footer>
+    <footer id="kontakt">
         <h2>Kanzlei steudata</h2>
-        <p class="footer-sub">Steuerberatungsgesellschaft mbH</p>
-        
+        <p class="footer-sub">
+            Steuerberatungsgesellschaft mbH
+        </p>
+
         <div>
-            <p style="color:#A5B6B8; margin-bottom:5px;">Zentrale Anlaufstelle Hamburg:</p>
-            <p style="font-size:1.1rem; margin-bottom:20px; font-weight: 600;">Heestweg 16, DE-22143 Hamburg</p>
-            
+            <p style="color:var(--text-muted); margin-bottom:5px;">
+                Zentrale Anlaufstelle Hamburg:
+            </p>
+            <p style="font-size:1.15rem; margin-bottom:24px; font-weight: 600;">
+                Heestweg 16, DE-22143 Hamburg
+            </p>
+
             <a href="tel:+49402201338" class="action-phone-mail">Tel: 040 220 13 38</a>
-            <p style="font-size:0.9rem; color:#A5B6B8; margin-bottom:15px;">Fax: 040 22 40 82</p>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:15px;">
+                Fax: 040 22 40 82
+            </p>
             <a href="mailto:info@steudata.de" class="action-phone-mail" style="color:var(--accent-gold);">info@steudata.de</a>
         </div>
-        
+
         <div class="navigation-instructions">
             <h4>Anfahrt mit dem Automobil</h4>
-            <p style="margin-bottom:15px;">Über die Bundesstraße B75 stadtauswärts fahren. Von der Bargteheider Straße rechts abbiegen in die Scharbeutzer Straße. Nach rund 200 Metern biegen Sie links in den Heestweg ein. Die Einfahrt zu unseren reservierten Stellplätzen liegt direkt neben Gebäude 14. Nutzen Sie bei geschlossener Schrankenanlage bitte die Kanzlei-Klingel.</p>
+            <p style="margin-bottom:15px;">
+                Über die Bundesstraße B75 stadtauswärts fahren. Von der Bargteheider Straße rechts abbiegen in die Scharbeutzer Straße. Nach rund 200 Metern biegen Sie links in den Heestweg ein. Die Einfahrt zu unseren reservierten Stellplätzen liegt direkt neben Gebäude 14. Nutzen Sie bei geschlossener Schrankenanlage bitte die Kanzlei-Klingel.
+            </p>
             <h4>Anreisen mit der Bahn (ÖPNV)</h4>
-            <p>Nutzen Sie die Regionalbahnlinie R10 bis zum Bahnhof Hamburg-Rahlstedt. Der anschließende Fußweg über den Doberaner Weg nimmt circa 7 Minuten in Anspruch.</p>
+            <p>
+                Nutzen Sie die Regionalbahnlinie R10 bis zum Bahnhof Hamburg-Rahlstedt. Der anschließende Fußweg über den Doberaner Weg nimmt circa 7 Minuten in Anspruch.
+            </p>
         </div>
 
         <div class="map-frame-holder">
@@ -457,7 +1005,7 @@
         </div>
 
         <div style="margin-bottom: 40px;">
-            <a href="https://maps.google.com/?q=Heestweg+16,+Hamburg" target="_blank" class="btn" style="background:#fff; color:var(--text-dark); border-radius:12px;">
+            <a href="https://maps.google.com/?q=Heestweg+16,+Hamburg" target="_blank" class="btn" style="background:#fff; color:var(--bg-main); border-radius:12px;">
                 ➔ Navigation in Google Maps starten
             </a>
         </div>
@@ -474,7 +1022,7 @@
             setTimeout(function() {
                 preloader.style.opacity = '0';
                 preloader.style.visibility = 'hidden';
-            }, 600);
+            }, 500);
         });
     </script>
 
